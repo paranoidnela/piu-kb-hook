@@ -1,4 +1,4 @@
-# Pump It Up Keyboard Hook
+# Pump It Up Keyboard Hook - Now with Infinity support
 
 Tool that allows you to use your keyboard on Pump It Up.
 
