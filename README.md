@@ -2,10 +2,12 @@
 
 Tool that allows you to use your keyboard on Pump It Up.
 
-Tested on Pump It Up Prime. To modify the keys, edit the `binds` list in `hook.cpp`.
+This fork uses a diffent approach of hooking the Keyboard inputs, making this compatible with Pump It Up Infinity while keeping compatibility with older games (tested with Prime 2).
+
+Shoutouts to all members of KRT - Konmairo Rhythm Team
 
 # Usage
-Download the pre-compiled binary or compile it, then add it to LD_PRELOAD before executing Prime.
+Download the pre-compiled binary or compile it, then add it to LD_PRELOAD before executing Prime, Prime 2 or Infinity.
 
 # Default keys
 F1 for test, F2 for service, F5 for player 1 coin, F6 for player 2 coin
@@ -31,4 +33,4 @@ cd piu-kb-hook
 make
 ```
 
-You'll now have a `hook.so` file in the aforementioned directory.
+You'll now have a `kb_hook.so` file in the aforementioned directory.
