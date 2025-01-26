@@ -157,10 +157,10 @@ void evdev_thread() {
                     if (ev.type == EV_KEY && ev.value <= 3) {
                         //std::cout << "Key Pressed: " << ev.code << std::endl; //debug print
 
-                        if (ev.code == KEY_ESC && ev.value != 0) { // Key down
+                        if (ev.code == KEY_ESC && ev.value != 0) { 
                            std::cout << "ESC pressed. Terminating Game..." << std::endl;
-                           std::raise(SIGTERM); // Send termination signal
-                           return; // Optional: Exit the loop/thread
+                           std::raise(SIGTERM); 
+                           return; 
                         }
 
                         for (const auto& bind : binds) {
