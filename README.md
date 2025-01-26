@@ -5,7 +5,7 @@ Tool that allows you to use your keyboard on Pump It Up.
 This fork uses a diffent approach of hooking the Keyboard inputs, making this compatible with Pump It Up Infinity while keeping compatibility with older games (tested with Prime 2).
 
 Shoutouts to all members of KRT - Konmairo Rhythm Team
-
+(https://i.imgur.com/d3OlvjU.png)
 # Usage
 Download the pre-compiled binary or compile it, then add it to LD_PRELOAD before executing Prime, Prime 2 or Infinity.
 
