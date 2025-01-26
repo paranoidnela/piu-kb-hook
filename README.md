@@ -29,7 +29,7 @@ To compile it yourself, run these commands:
 
 ```
 sudo apt-get install git build-essential libx11-dev
-git clone https://github.com/therathatter/piu-kb-hook
+git clone https://github.com/Thalesalex/piu-kb-hook
 cd piu-kb-hook
 make
 ```
