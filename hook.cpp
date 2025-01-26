@@ -4,6 +4,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <cstring>
+#include <csignal>
 #include <thread>
 #include <atomic>
 #include <dlfcn.h>
@@ -33,6 +34,7 @@ const uint8_t PAD_RD = 0x10;
 const uint8_t CAB_SERVICE = 0x40;
 const uint8_t CAB_TEST = 0x02;
 const uint8_t CAB_COIN = 0x04;
+const uint8_t CAB_CLEAR = 0x80;
 
 uint8_t IOSTATE[4] = { 0xFF, 0xFF, 0xFF, 0xFF };
 
@@ -59,6 +61,7 @@ const std::list<piu_bind> binds = {
 
     { KEY_F1, STATE_CAB_PLAYER_1, CAB_TEST },
     { KEY_F2, STATE_CAB_PLAYER_1, CAB_SERVICE },
+    { KEY_F3, STATE_CAB_PLAYER_1, CAB_CLEAR },
 };
 
 bool is_real_pad_connected = false;
@@ -153,6 +156,12 @@ void evdev_thread() {
                 if (n == (ssize_t)sizeof(ev)) {
                     if (ev.type == EV_KEY && ev.value <= 3) {
                         //std::cout << "Key Pressed: " << ev.code << std::endl; //debug print
+
+                        if (ev.code == KEY_ESC && ev.value != 0) { // Key down
+                           std::cout << "ESC pressed. Terminating Game..." << std::endl;
+                           std::raise(SIGTERM); // Send termination signal
+                           return; // Optional: Exit the loop/thread
+                        }
 
                         for (const auto& bind : binds) {
                             if (ev.code == bind.keycode && ev.value != 2) {
