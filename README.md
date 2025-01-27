@@ -11,7 +11,7 @@ Shoutouts to all members of KRT - Konmairo Rhythm Team
 Download the pre-compiled binary or compile it, then add it to LD_PRELOAD before executing Prime, Prime 2 or Infinity.
 
 # Default keys
-F1 for test, F2 for service, F5 for player 1 coin, F6 for player 2 coin
+F1 for test, F2 for service, F3 for coin clear, F5 for player 1 coin, F6 for player 2 coin
 
 Pad layout:
 ```
