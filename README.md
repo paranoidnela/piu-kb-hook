@@ -35,3 +35,7 @@ make
 ```
 
 You'll now have a `kb_hook.so` file in the aforementioned directory.
+
+# Known Issues
+
+I noticed that K-Pump games (Again, tested with Prime 2) doesn't like when Wine is installed and you have any mouse device conected, making the game segfault just before starting its attract mode, tried fixing this with no success, removing Wine solved the problem. Infinity is not affected by this issue, so I'm not motivated to fix it, if you REALLY need Wine installed, use this fork only with Infinity and just use the original code or other forks for K-Pump
