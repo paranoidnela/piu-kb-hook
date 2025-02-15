@@ -10,9 +10,13 @@
 #include <dlfcn.h>
 #include <cstdlib>
 #include <linux/input.h>
+#include <linux/joystick.h>
+#include <fcntl.h>
+#include <unistd.h>
 #include <X11/Xlib.h>
 #include <X11/keysym.h>
 #include <list>
+#include <thread>
 #include "structs.h"
 
 const uint16_t VENDOR  = 0x0547;
@@ -44,6 +48,13 @@ struct piu_bind {
     uint8_t bit;
 };
 
+struct ltekpad_mapping {
+    int button;
+    const char* key;
+    uint8_t state;
+    uint8_t bit;
+};
+
 const std::list<piu_bind> binds = {
     { KEY_Q,  STATE_PLAYER_1, PAD_LU },
     { KEY_E,  STATE_PLAYER_1, PAD_RU },
@@ -64,8 +75,50 @@ const std::list<piu_bind> binds = {
     { KEY_F3, STATE_CAB_PLAYER_1, CAB_CLEAR },
 };
 
+const std::list<ltekpad_mapping> ltek_binds = {
+    {0, "q", STATE_PLAYER_1, PAD_LU},  // Ltek button LEFT UP
+    {1, "e", STATE_PLAYER_1, PAD_RU},  // Ltek button RIGHT UP
+    {4, "s", STATE_PLAYER_1, PAD_CN},  // Ltek button CENTER
+    {2, "z", STATE_PLAYER_1, PAD_LD},  // Ltek button LEFT DOWN
+    {3, "c", STATE_PLAYER_1, PAD_RD}   // Ltek button RIGHT DOWN
+};
+
 bool is_real_pad_connected = false;
 bool was_emulated_device_added = false;
+
+
+void handle_ltekpad() {
+    int ltek_fd = open("/dev/input/js0", O_RDONLY);
+    if (ltek_fd == -1) {
+        std::cerr << "Can't open ltekPad" << std::endl;
+        return;
+    }
+
+    struct js_event event;
+    while (true) {
+        if (read(ltek_fd, &event, sizeof(event)) == sizeof(event)) {
+            if (event.type == JS_EVENT_BUTTON) {
+                for (const auto& mapping : ltek_binds) {
+                    if (event.number == mapping.button) {
+                        if (event.value) {
+                            // button pressed
+                            IOSTATE[mapping.state] &= ~mapping.bit;
+                        } else {
+                            // button not pressed
+                            IOSTATE[mapping.state] |= mapping.bit;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    close(ltek_fd);
+}
+
+void __attribute__((constructor)) init_ltekpad() {
+    std::thread ltek_thread(handle_ltekpad);
+    ltek_thread.detach();
+}
 
 std::vector<std::string> open_all_keyboards() {
     const char* input_dir = "/dev/input/";
