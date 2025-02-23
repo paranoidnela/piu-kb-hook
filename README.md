@@ -37,7 +37,7 @@ cd piu-kb-hook
 make
 ```
 
-You'll now have a `ltek_kb_hook.so` file in the aforementioned directory.
+You'll now have a `ltek_kb_hook_inverted.so` file in the aforementioned directory.
 
 # Known Issues
 
