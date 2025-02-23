@@ -31,7 +31,7 @@ To compile it yourself, run these commands:
 
 ```
 sudo apt-get install git build-essential libx11-dev gcc-multilib g++-multilib
-git clone https://github.com/Thalesalex/piu-kb-hook
+git clone https://github.com/paranoidnela/piu-kb-hook
 cd piu-kb-hook
 make
 ```
