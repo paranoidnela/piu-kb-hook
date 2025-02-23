@@ -70,8 +70,11 @@ const std::list<piu_bind> binds = {
     { KEY_KP3,  STATE_PLAYER_2, PAD_RD },
     { KEY_F6,    STATE_CAB_PLAYER_2, CAB_COIN },
 
-    { KEY_F1, STATE_CAB_PLAYER_1, CAB_TEST },
-    { KEY_F2, STATE_CAB_PLAYER_1, CAB_SERVICE },
+//  Invert Test and Service, this may be desirable for consistency between mainline pump and infinity where test adds service credits and service opens the test menu.
+//  { KEY_F1, STATE_CAB_PLAYER_1, CAB_TEST },
+//  { KEY_F2, STATE_CAB_PLAYER_1, CAB_SERVICE },
+    { KEY_F1, STATE_CAB_PLAYER_1, CAB_SERVICE },
+    { KEY_F2, STATE_CAB_PLAYER_1, CAB_TEST },
     { KEY_F3, STATE_CAB_PLAYER_1, CAB_CLEAR },
 };
 
