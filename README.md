@@ -2,7 +2,7 @@
 
 Tool that allows you to use your keyboard or LTEK on Pump It Up.
 
-This fork uses a different approach of hooking the Keyboard inputs, making this compatible with Pump It Up Infinity while keeping compatibility with KPUMP games (tested with Prime 2).
+This fork uses a different approach of hooking the Keyboard inputs, making this compatible with Pump It Up Infinity while keeping compatibility with KPUMP games (tested with Prime 2).  
 This specific branch is intended for use with multipump setups, in order to keep consistency between Infinity and Mainline Pump where `Service` and `Test` work in the exact opposite way as they would in Infinity
 
 Shoutouts to all members of KRT - Konmairo Rhythm Team
